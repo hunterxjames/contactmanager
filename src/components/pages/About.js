@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function About() {
+export default (props) => {
     return (
         <div>
             <h1 className="display-4">About Contact Manager</h1>
@@ -8,4 +8,4 @@ export default function About() {
             <p className="text-secondary">Version 1.0.0</p>
         </div>
     );
-}
+};
