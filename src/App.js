@@ -8,6 +8,7 @@ import { Provider } from "./context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import About from "./components/pages/About";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                                 component={AddContact}
                             />
                             <Route exact path="/about" component={About} />
+                            <Route component={NotFound} />
                         </Switch>
                     </div>
                 </div>
