@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 // import css file
 // import './Contact.css';
 import { Consumer } from "../../context";
+import Axios from "axios";
 
 class Contact extends Component {
     //state is a special variable to store component's state
@@ -23,8 +24,20 @@ class Contact extends Component {
         this.setState({ showContactInfo: !this.state.showContactInfo });
     };
 
-    onDeleteClick = (id, dispatch) => {
+    //synchronous
+    // onDeleteClick = (id, dispatch) => {
+    //     console.log("delete clicked");
+    //     Axios.delete(
+    //         `https://jsonplaceholder.typicode.com/users/${id}`
+    //     ).then((res) => dispatch({ type: "DELETE_CONTACT", payload: id }));
+    // };
+
+    onDeleteClick = async (id, dispatch) => {
         console.log("delete clicked");
+        const res = await Axios.delete(
+            `https://jsonplaceholder.typicode.com/users/${id}`
+        );
+
         dispatch({ type: "DELETE_CONTACT", payload: id });
     };
 
@@ -37,7 +50,6 @@ class Contact extends Component {
             <Consumer>
                 {(value) => {
                     const { dispatch } = value;
-                    console.log(value);
                     return (
                         <div className="card card-body mb-3">
                             <h4>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-import { v4 as uuidv4 } from "uuid";
 import TextInputGroup from "../layout/TextInputGroup";
+import Axios from "axios";
 
 class AddContact extends Component {
     state = {
@@ -11,7 +11,7 @@ class AddContact extends Component {
         errors: {},
     };
 
-    onSubmit = (dispatch, e) => {
+    onSubmit = async (dispatch, e) => {
         const { name, email, phone } = this.state;
         e.preventDefault();
 
@@ -29,13 +29,18 @@ class AddContact extends Component {
             return;
         }
         const contact = {
-            id: uuidv4,
             name,
             email,
             phone,
         };
         console.log(this.contact);
-        dispatch({ type: "ADD_CONTACT", payload: contact });
+        const res = await Axios.post(
+            `https://jsonplaceholder.typicode.com/users/`,
+            contact
+        );
+
+        dispatch({ type: "ADD_CONTACT", payload: res.data });
+
         this.setState({
             name: "",
             email: "",

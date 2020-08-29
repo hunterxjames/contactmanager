@@ -71,3 +71,10 @@ Modules:
 classnames
 uuid
 react-browser-dom
+axios
+
+Reference:
+Medium.com React 16.3 + Component life-cycle
+
+Fake Rest API
+https://jsonplaceholder.typicode.com/
