@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 // import css file
 // import './Contact.css';
 import { Consumer } from "../../context";
+import { Link } from "react-router-dom";
+
 import Axios from "axios";
 
 class Contact extends Component {
@@ -43,7 +45,7 @@ class Contact extends Component {
 
     render() {
         //Desctructuring
-        const { contact } = this.props;
+        const { id, name, email, phone } = this.props.contact;
         const { showContactInfo } = this.state;
 
         return (
@@ -53,7 +55,7 @@ class Contact extends Component {
                     return (
                         <div className="card card-body mb-3">
                             <h4>
-                                {contact.name}{" "}
+                                {name}{" "}
                                 <i
                                     onClick={() =>
                                         this.setState({
@@ -73,18 +75,29 @@ class Contact extends Component {
                                     }}
                                     onClick={this.onDeleteClick.bind(
                                         this,
-                                        contact.id,
+                                        id,
                                         dispatch
                                     )}
                                 ></i>
+                                <Link to={`/contact/edit/${id}`}>
+                                    <i
+                                        className="fas fa-pencil-alt"
+                                        style={{
+                                            cursor: "pointer",
+                                            float: "right",
+                                            color: "black",
+                                            marginRight: "1rem",
+                                        }}
+                                    ></i>
+                                </Link>
                             </h4>
                             {showContactInfo ? (
                                 <ul className="list-group">
                                     <li className="list-group-item">
-                                        Email: {contact.email}
+                                        Email: {email}
                                     </li>
                                     <li className="list-group-item">
-                                        Phone: {contact.phone}
+                                        Phone: {phone}
                                     </li>
                                 </ul>
                             ) : null}
